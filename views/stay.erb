@@ -1,0 +1,21 @@
+<h1>BlackJack!</h1>
+
+<h3>Welcome <%= session[:user_name] %></h3>
+</br>
+
+Dealer's Cards:
+<ul>
+	<% session[:dealer_hand].each do |card| %>
+		<li><%= card[1].to_s %> of <%= card[0].to_s %></li>
+	<% end %>
+</ul>
+
+
+Player's Cards:
+<ul>
+	<% session[:player_hand].each do |card| %>
+		<li><%= card[1].to_s %> of <%= card[0].to_s %></li>
+	<% end %>
+</ul>
+
+<h4>Player chooses to stay at <%= session[:score] %></h4>

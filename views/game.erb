@@ -1,0 +1,59 @@
+
+<div id ='game'>
+	<h1>BlackJack!</h1>
+
+	<h3>Welcome <%= session[:user_name] %></h3>
+	</br>
+
+	<form action = '/play_again' method = 'post'>
+		<input type = 'submit' class = "btn btn-primary btn-large" value = "Play Again?"/>
+	</form>
+
+	<div class="well">
+		
+		<h4>Dealer's Cards:</h4>
+			<% if @show_cover_card == true %>
+				<img src = '/images/cards/cover.jpg' class = 'card_image'>
+				<%= card_image(session[:dealer_hand][1]) %>
+			<% else %>
+				<% session[:dealer_hand].each do |card| %>
+					<%= card_image(card) %>
+				<% end %>	
+			<% end %>
+
+
+			<% if @show_dealer_move_button == true %>
+				<form id="dealer_button" action = '/game/dealer/move' method = 'post'>
+					<input type = 'submit' class = 'btn' value = 'Dealer Move'/>
+				</form>
+			<% elsif score(session[:dealer_hand], "Dealer") >16 %>
+				<h5> Dealer has a score of <%= score(session[:dealer_hand], "Dealer") %> </h5>
+					<form id="winner_declare" action = '/game/winner_declare' method = 'post'>
+						<input type = 'submit' class = 'btn' value = 'See Who Won'/>
+					</form>
+				<% end %>
+			
+	</div>
+
+	<div class="well" id='player_area'>
+		<h4>Player's Cards:</h4>
+			<% session[:player_hand].each do |card| %>
+				<%= card_image(card) %>
+			<% end %>
+	</div>
+
+	<p>
+		Your score is <%= score(session[:player_hand], session[:user_name]) %>
+			<% if @show_hit_or_stay_buttons == true %>
+				<h3>What would the player like to do?</h3>
+					<form id="hit_form" action = '/game/player/hit' method = 'post'>
+						<input type = 'submit' class = 'btn btn-success' value = 'Hit' />
+					</form>
+					<form id="stay_form" action = '/game/player/stay' method = 'post'>
+						<input type = 'submit' class = 'btn btn-warning' value = 'Stay' />
+					</form>
+			<% end %>
+	</p>
+
+
+</div>

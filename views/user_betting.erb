@@ -1,0 +1,15 @@
+
+<div class= "hero-unit">
+
+	<h4>Set Player Bet</h4>
+
+	<h5 style="color:blue;">You have <%= session[:funds] %> available</h5>
+
+	<form action = 'user_betting' method = 'post'>
+		Bet: <input type = 'text' name = 'user_bet'>
+		<br/>
+		<br/>
+		<input type = 'submit' class = "btn btn-primary btn-large" />
+	</form>
+
+</div>

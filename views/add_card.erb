@@ -1,0 +1,34 @@
+<h1>BlackJack!</h1>
+
+<h3>Welcome <%= session[:user_name] %></h3>
+</br>
+
+Dealer's Cards:
+
+<ul>
+	<% session[:dealer_hand].each do |card| %>
+		<li><%= card.to_s %></li>
+	<% end %>
+</ul>
+
+
+Player's Cards:
+<ul>
+	<% session[:player_hand].each do |card| %>
+		<li><%= card.to_s %></li>
+	<% end %>
+
+</ul>
+
+Your score is <%= session[:score] %>
+
+<h3>What would the player like to do?</h3>
+
+<form action = '/game' method = 'post'>
+	Hit: <input type = 'submit' class = 'btn' />
+	</br>
+	</br>
+</form>
+<form action = '/stay' method = 'post'>
+	Stay: <input type = 'submit' class = 'btn' />
+</form>
